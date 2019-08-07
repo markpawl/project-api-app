@@ -11,7 +11,7 @@ pipeline {
         }
         stage('build') {
             agent{
-                docker { dockerfile true }
+                dockerfile true 
             }
             steps {
                 sh 'java -version'
