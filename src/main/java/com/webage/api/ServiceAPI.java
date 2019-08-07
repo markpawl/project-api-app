@@ -19,7 +19,7 @@ public class ServiceAPI {
 	
 	@GetMapping
 	public String healthCheck() {
-		System.out.println( "healthcheck called");
+		System.out.println( "healthcheck called " +count + " times.");
 		count += 1;
 		Date date = new Date();
 		String dateformat = SimpleDateFormat.getDateTimeInstance(SimpleDateFormat.SHORT, SimpleDateFormat.FULL).format(date);
