@@ -1,6 +1,6 @@
 package com.webage.api;
 
-import org.junit.Test;
+import org.junit.Test; 
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,29 +17,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(CustomerAPI.class)
+@WebMvcTest(ServiceAPI.class)
 @AutoConfigureRestDocs(outputDir = "target/snippets")
-public class CustomerAPITest {
+public class ServiceAPITest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void contextLoads() { 
-        System.out.println("in CustomerAPITest.contextLoads() test.");
+        System.out.println("in contextLoads() test.");
     }
 
     @Test
-    public void shouldReturnDefaultCustomers() throws Exception {
-        System.out.println("in CustomerAPITest.shouldReturnDefaultCustomers() test.");
-        String tokencheck = "false";
-        this.mockMvc.perform(get("/customers?tokencheck=false").param("tokencheck",tokencheck))
-                    .andExpect(!status().isOk());
-
-/*                     .andExpect(content().string(containsString("Bruce")))
-                    .andExpect(content().string(containsString("Paul")))
-                    .andExpect(content().string(containsString("Rick")))
-                    .andDo(document("customer-api")); */
+    public void shouldReturnDefaultMessage() throws Exception {
+        System.out.println("in shouldReturnDefaultMessage() test.");
+        this.mockMvc.perform(get("/"))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(containsString("up and running!")))
+                    .andDo(document("service-api"));
     }
 
 }
